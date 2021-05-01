@@ -1,0 +1,95 @@
+
+GET{metoda} / predmet rppzwpu HTTP{oznaka resursa}/1.1{oznaka protokola}
+Host: www.fer.hr {ime posluzitelja}
+
+HTTP -prijenos u formatima -> html,meta-data,chunk,
+
+Media Type -> text/html,image/jpeg,video/quickTime,application/javascript
+ 
+ 
+		logo.png?
+Browser ---------> www.fer.hr		
+		Content-type image/jpeg
+		Content-length:1399
+		<----------
+		
+MME Type - (tip/podtip) -> application/javascript, application/json,text/plain
+
+HTTPS - port(443) --> HTTS /-> TLS/SSL /-> TCP /-> IP
+
+Uspostava komunikacije TLS - faza rukovanja(dogovor parametara), faza komunikacije(kljuc za sifriranje poruka)
+
+Tijek komunikacije Server <-> Client	
+
+	<- salje zahtijev , -> odgovara certifikatom, , <- provjerava certifikat, generira kljuc sjednice
+	 ,salje kljuc sifriran javnim kljucem, -> desifrira kljuc sjednice, <-> koriste kljuc sjednice
+ 
+Primjena HTTP - Cloud Computing, Rest, www, WOT
+
+URI - uniformni (struktura zapisa) - identifikator (infromacija koja omogucuju razlikovanje resursa)
+	- resurs (informacijski izvor)
+
+URL,URN - podskup od URI
+
+Primjeri URI-a (http://www.ietf.org/rfc/rfc2396.txt,mailto:John.Doe@example.com
+				--> apsolutni (puno ime web adrese,www.fer.hr)
+				--> relativni (skraceno, npr localhost)
+
+Analiza URI-a
+http:{shema,nacin pristupa resursu(HTTP)}//www.fer.unizg.hr{host name(ip adresa ili ime)}/predmet/rppzwpu{put resursa}
+|kako|											|gdje| 										|sto se dohvaca|
+
+shema:(http,ftp,urn,file)// <autoritet>{opcionalno} <put> ? <upit> {popis parametara}{put,upit isto neobavezno}
+pr. http://www.google.com:81/search?q=web{html#b3 -> skakanje po poglavljima}
+
+<a href="../djelatnost/nastava/intstv.html>Internet stvari </a> (popni se gore,spusti na djelatnost/nastava/ , otvori intstv.html
+
+Poruke HTTP
+
+request 				 reply
+Get /pred/web HTTP 1.0	HTTP 1.1 200 OK Pocetni redak
+...						Content-type  Zaglavlja	
+...						...				
+prazan 					redak
+...						<!Doctype html> <html>  tijelo poruke
+
+Metode zahtijeva
+
+GET - dohvacanje sadrzaja, HEAD- dohvacanje podataka o resursu(nema sadrzaja u tijelu za razliku od GET)
+, POST(sign up, comment,burza grupa),PUT,DELETE
+
+HTTP Odgovor - HTTP/1.1 (inacica protokola) 404 (kod) Not FOund (opis)
+
+Kod - 1xx (info) ,2xx(success{OK}),3xx(redirect),4xx(client err{Bad request}{Not Found}), 5xx(server error{Internal server err}{Service Unavailable})
+
+GET koristi link, POST body
+
+opera 	dns server 	www.fer.hr
+fer.hr?
+-------=---->
+<----------evo ip
+
+GET /pred/web ----------->
+<--- HTTP 200 OK +index.html
+
+GET--------------------> konekcije
+GET-------------------->
+<-----------------------
+<-----------------------
+
+Validacija(60.) -moze se povuci js koji radi validaciju da se ne salje na server
+
+Cilj cache-a -> smanjiti odziv,internetski promet,opterecenje
+
+Uvjetni GET -> IF-Match,IF-None-Match,If-Range
+
+
+
+
+							
+
+
+
+
+ 
+		
