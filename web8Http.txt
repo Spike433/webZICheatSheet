@@ -31,6 +31,11 @@ URI - uniformni (struktura zapisa) - identifikator (infromacija koja omogucuju r
 
 URL,URN - podskup od URI
 
+URN -jedinstvenost i trajnost  identifikacije
+	pr. urn:ietf:rfc:2616
+
+URL - sadrzi informaciju o lokaciji
+
 Primjeri URI-a (http://www.ietf.org/rfc/rfc2396.txt,mailto:John.Doe@example.com
 				--> apsolutni (puno ime web adrese,www.fer.hr)
 				--> relativni (skraceno, npr localhost)
@@ -60,7 +65,7 @@ GET - dohvacanje sadrzaja, HEAD- dohvacanje podataka o resursu(nema sadrzaja u t
 
 HTTP Odgovor - HTTP/1.1 (inacica protokola) 404 (kod) Not FOund (opis)
 
-Kod - 1xx (info) ,2xx(success{OK}),3xx(redirect),4xx(client err{Bad request}{Not Found}), 5xx(server error{Internal server err}{Service Unavailable})
+Kod - 1xx (info) ,2xx(success{200-OK}),3xx(301-permanet redirect),4xx(client err{400=Bad request}{404-Not Found}), 5xx(server error{500-Internal server err}{503-Service Unavailable})
 
 GET koristi link, POST body
 
