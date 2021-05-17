@@ -1,0 +1,101 @@
+Procesni modeli i protokoli 
+-> in-process (opasno,ISAPI,Apache Server Api,low usage)
+-> poseban proc(sporo,CGI,low usage)
+->poseban proc s pool-om(Fast CGI,PhP)
+-> proc s 2 dretve
+-> proc s pool-om
+-> vanjski proc s pool-om dretvi
+
+Event Loop -> ako je fja async stavlja se u queue sve dok se sve ne obradi							
+
+Versioning -> minor ^version- 1.2.3 -> 1.{2-9}.3
+		   -> major ~version- 1.2.3 -> {1-9}.2.3
+		   
+Moduli
+
+--common/index.js--
+const QRCode = require('qrcode'); 
+module.exports = {
+log: fancyLog
+};
+--index.js--
+fancy.log('Hello world!');
+const fancy = require('./common');
+//ako se datoteka nalazi u common i zove se index.js onda moze './common/qrcode'
+
+HTTP Server
+
+var http = require('http');
+const url = require('url');
+
+async function getHomePage(selectedSubj){
+ let data= await getAllSubjects();
+ 
+ return ` <html> ${data} </html> `
+}	
+async function getAllSubjects(){
+	let text= `select nazpredmet from predmet`; // za ' se koristi \'
+	const { rows } = await db.query(text);
+	return  '<ul>'+ rows.map(x=>`<a href="subj?nazpred=${x.nazpredmet}">${x.nazpredmet}</a>`).join(' ') + '</ul>';
+}
+
+http.createServer(function(req, res) {
+const queryObject = url.parse(req.url,true).query; 
+// /pred?nazPred='Mat 3'&ocj=5 --> queryObject.nazPred --> 'Mat 3'
+res.writeHead(200, { 'Content-Type': 'text/html' }); // header
+res.write('Hello World!'); // body
+res.end(await getHomePage(queryObject.nazpred));
+}).listen(80); 
+
+Promises
+
+let makePromise=function (x) {
+    return new Promise(function (res, rej) {
+        try {
+            setTimeout(function () {
+                res(x);
+            }, 1000)
+        } catch (err) {
+            //handle err
+        }
+
+    })
+}
+
+let afAll = async function(){
+    let sum=0;
+    let res = await Promise.all([
+        makePromise(getRandom([])).then(function (r1){
+            sum+=r1;
+            })
+        .catch(function (err){
+            //handle err
+        }),
+        makePromise(getRandom([])).then(function (r2){
+            sum+=r2;
+        }).catch(function (err){
+            //handle err
+        })
+	])
+} 
+
+let sum=0;
+makePromise(getRandom([]))
+.then(function (r1){
+    sum+=parseInt(r1);
+    return makePromise(getRandom([]));
+}).then(function (r3){
+    sum+=parseInt(r3);
+    console.log(`sum is ${sum}`);
+}).catch(function (err){
+    //handle err
+})
+
+let asyF = async function () {
+
+    let r1 = await makePromise(getRandom([]));
+    let r2 = await makePromise(getRandom([]));
+    let r3 = await makePromise(getRandom([]));
+
+    console.log("${r1}+${r2}+${r3}=${r1+r2+r2}");
+}
