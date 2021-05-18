@@ -10,7 +10,7 @@ Event Loop -> ako je fja async stavlja se u queue sve dok se sve ne obradi
 
 Versioning -> minor ^version- 1.2.3 -> 1.{2-9}.3
 		   -> major ~version- 1.2.3 -> {1-9}.2.3
-		   
+// \\		   
 Moduli
 
 --common/index.js--
@@ -21,8 +21,8 @@ log: fancyLog
 --index.js--
 fancy.log('Hello world!');
 const fancy = require('./common');
-//ako se datoteka nalazi u common i zove se index.js onda moze './common/qrcode'
-
+ 
+ // \\
 HTTP Server
 
 var http = require('http');
@@ -47,6 +47,7 @@ res.write('Hello World!'); // body
 res.end(await getHomePage(queryObject.nazpred));
 }).listen(80); 
 
+// \\ 
 Promises
 
 let makePromise=function (x) {
