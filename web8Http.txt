@@ -1,32 +1,35 @@
 
-GET{metoda} / predmet rppzwpu HTTP{oznaka resursa}/1.1{oznaka protokola}
+GET{metoda} / predmet / rppzwpu HTTP{oznaka resursa}/1.1{oznaka protokola}
 Host: www.fer.hr {ime posluzitelja}
 
-HTTP -prijenos u formatima -> html,meta-data,chunk,
+HTTP - (hypermedia) prijenos u formatima -> html,meta-data,chunk,
 
 Media Type -> text/html,image/jpeg,video/quickTime,application/javascript
  
  
 		logo.png?
-Browser ---------> www.fer.hr		
+Browser ------------------------> www.fer.hr		
 		Content-type image/jpeg
 		Content-length:1399
-		<----------
+	  <--------------------------
 		
 MME Type - (tip/podtip) -> application/javascript, application/json,text/plain
 
-HTTPS - port(443) --> HTTS /-> TLS/SSL /-> TCP /-> IP
+Ciklus zahtjev-odgovor= jedna konverzacija
+
+HTTPS port(443) --> HTTS --> TLS/SSL --> TCP --> IP
 
 Uspostava komunikacije TLS - faza rukovanja(dogovor parametara), faza komunikacije(kljuc za sifriranje poruka)
 
 Tijek komunikacije Server <-> Client	
 
-	<- salje zahtijev , -> odgovara certifikatom, , <- provjerava certifikat, generira kljuc sjednice
+	<- salje zahtjev , -> odgovara certifikatom, , <- provjerava certifikat, generira kljuc sjednice
 	 ,salje kljuc sifriran javnim kljucem, -> desifrira kljuc sjednice, <-> koriste kljuc sjednice
  
 Primjena HTTP - Cloud Computing, Rest, www, WOT
 
-URI - uniformni (struktura zapisa) - identifikator (infromacija koja omogucuju razlikovanje resursa)
+URI - uniformni (struktura zapisa) 
+	- identifikator (infromacija koja omogucuju razlikovanje resursa)
 	- resurs (informacijski izvor)
 
 URL,URN - podskup od URI
@@ -35,6 +38,7 @@ URN -jedinstvenost i trajnost  identifikacije
 	pr. urn:ietf:rfc:2616
 
 URL - sadrzi informaciju o lokaciji
+	pr. http://www.ietf.org/rfc/rfc.txt
 
 Primjeri URI-a (http://www.ietf.org/rfc/rfc2396.txt,mailto:John.Doe@example.com
 				--> apsolutni (puno ime web adrese,www.fer.hr)
@@ -44,10 +48,10 @@ Analiza URI-a
 http:{shema,nacin pristupa resursu(HTTP)}//www.fer.unizg.hr{host name(ip adresa ili ime)}/predmet/rppzwpu{put resursa}
 |kako|											|gdje| 										|sto se dohvaca|
 
-shema:(http,ftp,urn,file)// <autoritet>{opcionalno} <put> ? <upit> {popis parametara}{put,upit isto neobavezno}
+shema:(http,ftp,urn,file)// <autoritet> <put {/predmet}> ? <upit {web=prag}> {put,upit isto neobavezno}
 pr. http://www.google.com:81/search?q=web{html#b3 -> skakanje po poglavljima}
 
-<a href="../djelatnost/nastava/intstv.html>Internet stvari </a> (popni se gore,spusti na djelatnost/nastava/ , otvori intstv.html
+<a href="../djelatnost/nastava/intstv.html>Internet stvari </a> (popni se na folder vise, spusti na djelatnost/nastava/ , otvori intstv.html
 
 Poruke HTTP
 
@@ -58,31 +62,41 @@ Get /pred/web HTTP 1.0	HTTP 1.1 200 OK Pocetni redak
 prazan 					redak
 ...						<!Doctype html> <html>  tijelo poruke
 
-Metode zahtijeva
+Metode zahtjeva
 
 GET - dohvacanje sadrzaja, HEAD- dohvacanje podataka o resursu(nema sadrzaja u tijelu za razliku od GET)
 , POST(sign up, comment,burza grupa),PUT,DELETE
 
-HTTP Odgovor - HTTP/1.1 (inacica protokola) 404 (kod) Not FOund (opis)
+HTTP reply - HTTP/1.1 {inacica protokola} 404 {kod} Not FOund {opis}
 
-Kod - 1xx (info) ,2xx(success{200-OK}),3xx(301-permanet redirect),4xx(client err{400=Bad request}{404-Not Found}), 5xx(server error{500-Internal server err}{503-Service Unavailable})
+Kod - 1xx (info){100-Continue}, 2xx(success){200-OK}, 3xx{301-permanet redirect},4xx(client err){400-Bad request}{404-Not Found}
+	  5xx(server error){500-Internal server err}{503-Service Unavailable}{505- http version not supported}
 
 GET koristi link, POST body
 
 opera 	dns server 	www.fer.hr
+
 fer.hr?
--------=---->
-<----------evo ip
+------------->				    |
+			IP					|		
+<-------------					|
+								|
+GET /pred/web 					|			
+------------------------->		|page load
+  HTTP 200 OK +index.html		|
+<------------------------- 		|
+								|
+GET css							|
+------------------------->		|
+GET js							|
+------------------------->		|
+<-----------------------		|
+<-----------------------		|
 
-GET /pred/web ----------->
-<--- HTTP 200 OK +index.html
+<ubaci formu iz MI>
+<tip kodiranja iz MI>
 
-GET--------------------> konekcije
-GET-------------------->
-<-----------------------
-<-----------------------
-
-Validacija(60.) -moze se povuci js koji radi validaciju da se ne salje na server
+Validacija -moze se povuci js koji radi validaciju da se ne salje na server
 
 Cilj cache-a -> smanjiti odziv,internetski promet,opterecenje
 
