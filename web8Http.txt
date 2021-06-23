@@ -46,7 +46,7 @@ Primjeri URI-a (http://www.ietf.org/rfc/rfc2396.txt,mailto:John.Doe@example.com
 
 Analiza URI-a
 http:{shema,nacin pristupa resursu(HTTP)}//www.fer.unizg.hr{host name(ip adresa ili ime)}/predmet/rppzwpu{put resursa}
-|kako|											|gdje| 										|sto se dohvaca|
+|kako|					  |gdje|					|sto se dohvaca|
 
 shema:(http,ftp,urn,file)// <autoritet> <put {/predmet}> ? <upit {web=prag}> {put,upit isto neobavezno}
 pr. http://www.google.com:81/search?q=web{html#b3 -> skakanje po poglavljima}
