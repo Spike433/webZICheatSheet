@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title> <%= title %> </title>
+</head>
+<body>
+<%- include(`partials/header`); %>
+<form action="/register" method="POST">
+<fieldset>
+	<legend>Registration data</legend>
+	<div>
+	<label for="email">Email:</label>
+	<input type="text" name="email" id="email"
+			maxlength="20" minlength="2" size="30">
+	</div>
+	<div>
+	<label for="password">Password:</label>
+	<input type="text" name="pass" id="password"
+			maxlength="20" minlength="2" size="30">
+	</div>
+	<div>
+	<input class="btn" type="submit" value="Submit">
+	<input class="btn" type="reset" value="Reset">
+	</div>
+	<% if (err !== undefined) { %>
+	<div>
+		<%= err %>
+	</div>
+	<% } %>
+</fieldset>
+</form>
+<div>
+    Used emails:
+    <% for (usr of users) { %>
+        <%= usr.email %>
+    <% } %>
+</div>
+
+<% if (user !== undefined) { %> 
+<div>
+    This session: 
+    <%= user.email %>
+</div> 
+<% } %>
+</body>
+</html>
